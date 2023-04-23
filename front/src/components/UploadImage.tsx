@@ -1,3 +1,4 @@
+import { getIngredients } from "@/services/image-recognition";
 import React, { useState } from "react";
 
 const UploadImage = () => {
@@ -5,7 +6,15 @@ const UploadImage = () => {
 
   return (
     <div>
-      <h1>Upload image here</h1>
+      <h1 className="text-2xl">Upload image here</h1>
+
+      <input
+        type="file"
+        onChange={(event) => {
+          let files = (event.target as HTMLInputElement).files;
+          setSelectedImage(files ? files[0] : null);
+        }}
+      />
 
       {selectedImage && (
         <div>
@@ -14,18 +23,24 @@ const UploadImage = () => {
             width={"250px"}
             src={URL.createObjectURL(selectedImage)}
           />
-          <br />
-          <button onClick={() => setSelectedImage(null)}>Remove</button>
+          <div className="flex gap-4 mt-4">
+            <button
+              className="bg-red-600 text-white rounded-md p-4"
+              onClick={() => setSelectedImage(null)}
+            >
+              Remove
+            </button>
+            <button
+              className="bg-blue-400 text-white rounded-md p-4"
+              onClick={() => {
+                getIngredients(selectedImage);
+              }}
+            >
+              Submit Image
+            </button>
+          </div>
         </div>
       )}
-      
-      <input
-        type="file"
-        onChange={(event) => {
-          let files = (event.target as HTMLInputElement).files
-          setSelectedImage(files ? files[0] : null);
-        }}
-      />
     </div>
   );
 };

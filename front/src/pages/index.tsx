@@ -7,10 +7,9 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen flex-col bg-white items-center justify-between p-24 ${inter.className}`}
+      className={`flex min-h-screen flex-col bg-white justify-between p-8 ${inter.className}`}
     >
       <UploadImage />
-      <button className='bg-blue-400 text-white rounded-md p-4'>Submit Image</button>
     </main>
   )
 }
