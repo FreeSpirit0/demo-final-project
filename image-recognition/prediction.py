@@ -8,7 +8,6 @@ input_shape = (224,224)
 def load_model():
     model = tf.keras.applications.MobileNetV2(input_shape)
     return model
-_model = load_model()
 
 def read_imagefile(file) -> Image.Image:
     image = Image.open(BytesIO(file))
